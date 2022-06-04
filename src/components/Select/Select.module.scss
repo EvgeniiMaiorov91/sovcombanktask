@@ -1,4 +1,4 @@
-.multiselect{
+.selectBox{
     position: relative;
      font-size: 13px;
     
@@ -47,7 +47,8 @@ ul{
     z-index: 1;
     li{
         padding: 10px;
-         &:hover{cursor: default;}
+         &:hover{cursor: default;
+        background-color:rgba(0, 57, 214, 0.1)}
     }
     transition: all .3s;
 }
@@ -55,11 +56,6 @@ ul{
 
 .itemGroup{
     list-style: none;
-
-}
-
-.active {
-    background-color:rgba(0, 0, 0, 0.075);
 }
 
 

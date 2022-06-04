@@ -2,44 +2,69 @@ import { useEffect, useRef, useState } from "react";
 import classes from "./Multiselect.module.scss";
 
 function Multiselect({ group, setActive }) {
+
   const [show, setShow] = useState(false);
-  const activeItems = group.filter(item=> item.selected);
-//  const ref = useRef();
-//  useEffect(()=>{
-//      console.log("fack")
-//      const onClick = e => ref.current.contains(e.target)||setShow(false);
-//      document.addEventListener("click",onClick);
-//      return () => document.removeEventListener("click", onClick);
-//  },[])
+  const activeItems = group.multi.filter(item=> item.selected);
+ const ref = useRef();
+ const refSelect = useRef();
+ useEffect(()=>{
+    
+     const onClick = (e) =>
+       ref.current.contains(e.target) ||
+       refSelect.current.contains(e.target) ||
+       setShow(false);
+     document.addEventListener("click",onClick);
+     return () => document.removeEventListener("click", onClick);
+ },[])
+
+ const changeGroupSelected = (id) => {
+                let arr = [...group.multi];
+                arr[id].selected = !arr[id].selected;
+                let groupClone = {...group};
+                groupClone.multi=arr;
+                setActive(groupClone);
+              }
+
+
+
   return (
     <div className={classes.multiselect}>
-      <div className={classes.select} onClick={() => setShow(!show)}>
+      <div
+        className={classes.select} 
+        ref={refSelect}
+        onClick={() => setShow(!show)}
+        tabindex="0"
+      >
         {activeItems.length ? (
-          activeItems.map((item) => (
-            <div>
+          activeItems.map((item, i) => (
+            <div key={i}>
               {item.value}
-              <span>&#10006;</span>
+              <span
+                onClick={(e) => {
+                  e.stopPropagation();
+                  changeGroupSelected(item.id);
+                }}
+              >
+                &#10006;
+              </span>
             </div>
           ))
         ) : (
-          <p>Выберете</p>
+          <p>Выберете группу</p>
         )}
       </div>
       <ul
-    //    ref={ref} 
-       style={show ? { opacity: 1, zIndex: 1 } : { opacity: 0, zIndex: -1 }}>
-        {group.map((item, index) => {
+        ref={ref}
+        style={show ? { opacity: 1, zIndex: 1 } : { opacity: 0, zIndex: -1 }}
+      >
+        {group.multi.map((item) => {
           return (
             <li
-              key={index}
+              key={item.id}
               className={`${classes.itemGroup} ${
                 item.selected ? classes.active : ""
               }`}
-              onClick={() => {
-                let arr = [...group];
-                arr[index].selected = !item.selected;
-                setActive(arr);
-              }}
+              onClick={() => changeGroupSelected(item.id)}
             >
               {item.value}
             </li>

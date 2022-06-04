@@ -17,8 +17,10 @@ background-color:white;
 :global {
   .react-dadata__input {
     font-size: 13px !important;
-    // width: 100%!important;
-    // margin: 0 auto;
+    &::placeholder{
+      color:black;
+    }
+    
     
   }
 }
@@ -31,7 +33,7 @@ $borderColor: #007cd6;
   
 
   label {
-    margin: 20px 10px 5px 0;
+    margin: 10px 10px 5px 0;
     opacity: 0.7;
     // font-weight:bold;
     font-size: 16px;
@@ -43,8 +45,12 @@ $borderColor: #007cd6;
     border: 1px solid #ccc;
     height: 38px;
     outline: none;
+    
     option{
       padding: 10px;
+      &:hover{
+        background-color:red;
+      }
     }
   }
   .select {
@@ -52,6 +58,11 @@ $borderColor: #007cd6;
     height: 38px;
     appearance: none;
     outline: none;
+    option{
+      &:hover{
+        background-color:red;
+      }
+    }
   }
   .checkbox {
     border: 1px solid #ccc;
@@ -65,6 +76,7 @@ $borderColor: #007cd6;
     font-size: 13px;
     border-radius: 4px;
     padding: 0 10px;
+    
   }
   .multi:focus,
   .select:focus,
@@ -94,7 +106,4 @@ $borderColor: #007cd6;
   }
 }
 
-// .react-dadata__input:focus {
-//     border-color: #007cd6;
-//     box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 0 3px rgb(0 124 214 / 30%);
-// }
+
