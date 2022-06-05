@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import classes from "./Select.module.scss";
+import classes from "../Multiselect/Multiselect.module.scss";
 
-function Select({ options, type, setSelect }) {
+function Select({ options, type, setSelect,value,setForm ,formData}) {
   const [show, setShow] = useState(false);
-  const activeOption = options[type].filter((option) => option.selected);
+  const activeOption = options[type].filter((option) => option.value === value);
   const ref = useRef();
   const refSelect = useRef();
   useEffect(() => {
@@ -15,17 +15,13 @@ function Select({ options, type, setSelect }) {
     return () => document.removeEventListener("click", onClick);
   }, []);
 
-  const changeSelected = (id) => {
-    let arr = [...options[type]];
+  const translate = {
+    MALE: 'Мужской',
+    FEMALE: 'Женский'
+  }
 
-    if (!arr[id].selected) {
-      for (let i = 0; i < arr.length; i++) {
-        arr[i].selected = arr[i].id === id;
-      }
-
-      setSelect({ ...options, [type]: arr });
-    }
-
+  const changeHandler = (value) => {
+    setForm({...formData,[type]:value})
     setShow(false);
   };
 
@@ -35,21 +31,30 @@ function Select({ options, type, setSelect }) {
         className={classes.select}
         ref={refSelect}
         onClick={() => setShow(!show)}
+        tabIndex="0"
       >
-        {activeOption.length ? <p>{activeOption[0].value}</p> : <p>Выберете</p>}
+        {activeOption.length ? (
+          <p>
+            {type === "gender"
+              ? translate[activeOption[0].value]
+              : activeOption[0].value}
+          </p>
+        ) : (
+          <p>Выберете</p>
+        )}
       </div>
       <ul
         ref={ref}
         style={show ? { opacity: 1, zIndex: 1 } : { opacity: 0, zIndex: -1 }}
       >
-        {options[type].map((item) => {
+        {options[type].map((item, i) => {
           return (
             <li
-              key={item.id}
+              key={i}
               className={classes.itemGroup}
-              onClick={() => changeSelected(item.id)}
+              onClick={() => changeHandler(item.value)}
             >
-              {item.value}
+              {type === "gender" ? translate[item.value] : item.value}
             </li>
           );
         })}
