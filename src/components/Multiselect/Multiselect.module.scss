@@ -1,17 +1,20 @@
+@import "../../color.scss";
+
+
 .multiselect,
 .selectBox {
   position: relative;
   font-size: 16px;
   .select {
-    border: 1px solid #ccc;
+    border: 1px solid $grey;
     height: 38px;
     border-radius: 4px;
     display: flex;
     align-items: center;
     &:focus {
-      border-color: #007cd6;
-      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-        0 0 0 3px rgba(0, 124, 214, 0.3);
+      border-color: $blue;
+      box-shadow: inset 0 1px 1px $gw,
+        0 0 0 3px $bw;
       border-radius: 4px;
     }
     p,
@@ -23,12 +26,12 @@
         cursor: default;
       }
     }
-    p{
-       margin: 0 10px; 
+    p {
+      margin: 0 10px;
     }
     span {
       margin-left: 10px;
-       font-size: 13px;
+      font-size: 13px;
       &:hover {
         cursor: pointer;
       }
@@ -36,25 +39,25 @@
     div {
       padding: 3px 10px;
       border-radius: 5px;
-      background-color:rgba(0, 124, 214, 0.1)
+      background-color: $bwo;
     }
   }
   ul {
     width: 100%;
     position: absolute;
-    border: 1px solid #ccc;
+    border: 1px solid $grey;
     border-radius: 4px;
     background-color: white;
     z-index: 1;
     .active {
-      background-color: rgba(0, 0, 0, 0.075);
+      background-color: $gw;
     }
     li {
       list-style: none;
       padding: 10px;
       &:hover {
         cursor: default;
-        background-color:rgba(0, 124, 214, 0.1)
+        background-color: $bwo;
       }
     }
     transition: all 0.3s;

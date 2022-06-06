@@ -1,13 +1,6 @@
 import validationForm from "./validationForm";
 
-function submitHandler(
-  formData,
-  setError,
-  setStatus,
-  status,
-  setFormData,
-  form
-) {
+function submitHandler(formData, setError, setStatus, setFormData, form) {
   let errorObj = {};
   let validationError = false;
   for (const key in formData) {
@@ -19,8 +12,6 @@ function submitHandler(
   }
   setError(errorObj);
   if (!validationError) {
-    console.log("cool")
-    
     setFormData({
       fullName: {},
       dateOfBirth: "",
@@ -31,7 +22,6 @@ function submitHandler(
       sms: false,
     });
     form.reset();
-  
   }
   setStatus({ loader: false, success: !validationError });
 }

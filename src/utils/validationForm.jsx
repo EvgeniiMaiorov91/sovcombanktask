@@ -1,6 +1,7 @@
 const validationForm = (type, data) => {
   let error = false;
   switch (type) {
+
     case "fullName":
       if (JSON.stringify(data) === "{}") {
         error = "Заполните поле";
@@ -42,6 +43,7 @@ const validationForm = (type, data) => {
         error = "Выберете поле(я)";
       }
       break;
+      
     default:
       break;
   }

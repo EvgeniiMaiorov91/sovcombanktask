@@ -1,3 +1,4 @@
+@import "../../color.scss";
 .loader {
   border-radius: 15px;
   display: flex;
@@ -8,7 +9,7 @@
   bottom: 0;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: $white;
   opacity: 0.7;
   .lds_dual_ring {
     display: inline-block;
@@ -22,8 +23,8 @@
       height: 64px;
       margin: 8px;
       border-radius: 50%;
-      border: 6px solid #000;
-      border-color: #000 transparent #000 transparent;
+      border: 6px solid $black;
+      border-color: $black transparent $black transparent;
       animation: lds_dual_ring 1.2s linear infinite;
     }
   }

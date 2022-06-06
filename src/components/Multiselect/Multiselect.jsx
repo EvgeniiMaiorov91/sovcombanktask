@@ -63,9 +63,7 @@ function Multiselect({ group, setForm, formData }) {
           return (
             <li
               key={i}
-              className={`${
-                isActive ? classes.active : ""
-              }`}
+              className={`${isActive ? classes.active : ""}`}
               onClick={() => changeGroupSelected(item.value)}
             >
               {item.value}

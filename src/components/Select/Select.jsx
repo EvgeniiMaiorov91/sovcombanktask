@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import classes from "../Multiselect/Multiselect.module.scss";
 
-function Select({ options, type, setSelect,value,setForm ,formData}) {
+function Select({ options, type, value, setForm, formData }) {
   const [show, setShow] = useState(false);
   const activeOption = options[type].filter((option) => option.value === value);
   const ref = useRef();
@@ -16,12 +16,12 @@ function Select({ options, type, setSelect,value,setForm ,formData}) {
   }, []);
 
   const translate = {
-    MALE: 'Мужской',
-    FEMALE: 'Женский'
-  }
+    MALE: "Мужской",
+    FEMALE: "Женский",
+  };
 
   const changeHandler = (value) => {
-    setForm({...formData,[type]:value})
+    setForm({ ...formData, [type]: value });
     setShow(false);
   };
 
